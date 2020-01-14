@@ -1,0 +1,21 @@
+{
+  "name": "romankozin/student-grads",
+  "authors": [
+    {
+      "name": "KielD-01",
+      "email": "romanko95.rk@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/var-dumper": "^5.0",
+    "nikic/fast-route": "^1.3",
+    "illuminate/database": "^6.10",
+    "spatie/array-to-xml": "^2.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "src/",
+      "Application\\": "app/"
+    }
+  }
+}

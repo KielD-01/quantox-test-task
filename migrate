@@ -1,0 +1,22 @@
+<?php
+
+require_once './vendor/autoload.php';
+require_once './app/bootstrap.php';
+
+$migrationsPath = './app/migrations';
+$migrationNamespace = "Application\\Migrations\\";
+
+array_map(function ($class) use ($migrationNamespace, $migrationsPath) {
+    if (preg_match('/\.php/', $class)) {
+        list($class,) = explode('.php', $class);
+
+        if (class_exists($migrationNamespace . $class, true)) {
+            echo "Migration class \033[1;33m{$migrationNamespace}{$class}\033[0m exists" . PHP_EOL;
+            echo call_user_func($migrationNamespace . $class . '::create');
+
+            return;
+        }
+
+        echo "Migration class \033[1;33m{$migrationNamespace}{$class}\033[0m not found" . PHP_EOL;
+    }
+}, scandir($migrationsPath));
